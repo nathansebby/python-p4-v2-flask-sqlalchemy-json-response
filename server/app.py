@@ -24,8 +24,13 @@ def index():
 
 @app.route('/demo_json')
 def demo_json():
-    pet_json = '{"id": 1, "name" : "Fido", "species" : "Dog"}'
-    return make_response(pet_json, 200)
+    pet = Pet.query.first()
+    pet_dict = {'id': pet.id,
+                'name': pet.name,
+                'species': pet.species
+                }
+
+    return make_response(pet_dict, 200)
 
 
 if __name__ == '__main__':
